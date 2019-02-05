@@ -1,4 +1,4 @@
-# PullpitoK
+# PullpitoK [![Build Status](https://travis-ci.com/nicokosi/pullpitoK.svg?branch=master)](https://travis-ci.com/nicokosi/pullpitoK)
 
 Like [nicokosi/pullpito](https://github.com/nicokosi/pullpito/), but implemented in [Kotlin](https://kotlinlang.org/) in order to discover this language. 🎓
 
