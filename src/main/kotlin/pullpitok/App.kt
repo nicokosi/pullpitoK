@@ -21,6 +21,8 @@ object HttpClientProvider {
 }
 
 fun main(args: Array<String>) = runBlocking {
+
+    if (!checkArgs(args)) System.exit(0)
     val repo = args[0]
     val token = if (args.size > 1) args[1] else ""
 
@@ -43,6 +45,14 @@ fun main(args: Array<String>) = runBlocking {
 
     val closed: (Event) -> Boolean = { it.type == Type.PullRequestEvent.name && it.payload.action == Action.closed.name }
     println("\n" + counters("closed per author", eventsPerAuthor, closed))
+}
+
+fun checkArgs(args: Array<String>): Boolean {
+    if (args.size < 1 || args[0].isEmpty() || args[0] == "-h" || args[0] == "--help" || args.size > 2) {
+        println("Usage: pullpitoK <repository> <token>\n\nA command line tool to display a summary of GitHub pull requests.\n\n    <repository>: a GitHub repository.\n        Example: python/peps\n\n    <token>: an optional GitHub personal access token");
+        return false
+    }
+    return true
 }
 
 fun perAuthor(events: List<Event>): Map<String, List<Event>> {

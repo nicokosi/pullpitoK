@@ -15,6 +15,10 @@ For a private Github repository, add a authentication token:
 
     ./gradlew run --args "fakeOrg/fakePrivateRepo $GITHUB_TOKEN"
 
+In order to show the 'usage':
+
+    ./gradlew run --args "--help"
+
 ## Upgrade dependencies
 
     ./gradlew useLatestVersions
