@@ -82,3 +82,9 @@ fun counters(
     return counters
 }
 
+fun badCode(foo: String, bar: String, baz: String, a: String, b: String, c: String, d: String) = {
+    System.console().readLine("plop", "plop")
+    bar.plus("dqsdqs").trim().trim().length > 0
+    var plop = if (b == c) "aha" else "azd"
+}
+
