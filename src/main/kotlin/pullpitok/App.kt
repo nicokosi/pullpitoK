@@ -24,7 +24,7 @@ fun main(args: Array<String>) = runBlocking {
 
     if (!checkArgs(args)) System.exit(0)
     val repo = args[0]
-    val token = if (args.size > 1) args[1] else ""
+    val token = args.getOrNull(1) ?: ""
 
     val allEvents = mutableListOf<Event>()
     for (pageNumber in 1..10) {
@@ -33,12 +33,11 @@ fun main(args: Array<String>) = runBlocking {
         if (events.isNotEmpty()) allEvents.addAll(events)
         else break
     }
-    println("pull requests for \"$repo\" ->")
-
+    println("""pull requests for "$repo" ->""")
     val eventsPerAuthor = perAuthor(allEvents)
 
     val opened: (Event) -> Boolean = { it.type == Type.PullRequestEvent.name && it.payload.action == Action.opened.name }
-    println("\n" + (counters("opened per author", eventsPerAuthor, opened)))
+    println("\n" + counters("opened per author", eventsPerAuthor, opened))
 
     val commented: (Event) -> Boolean = { it.type == Type.PullRequestReviewCommentEvent.name && it.payload.action == Action.created.name }
     println("\n" + counters("commented per author", eventsPerAuthor, commented))
@@ -47,37 +46,37 @@ fun main(args: Array<String>) = runBlocking {
     println("\n" + counters("closed per author", eventsPerAuthor, closed))
 }
 
-fun checkArgs(args: Array<String>): Boolean {
-    if (args.size < 1 || args[0].isEmpty() || args[0] == "-h" || args[0] == "--help" || args.size > 2) {
-        println("Usage: pullpitoK <repository> <token>\n\nA command line tool to display a summary of GitHub pull requests.\n\n    <repository>: a GitHub repository.\n        Example: python/peps\n\n    <token>: an optional GitHub personal access token");
-        return false
-    }
-    return true
-}
+fun checkArgs(args: Array<String>): Boolean =
+        if (args.size !in (1..2) || args[0] in setOf("", "-h", "--help")) {
+            println("""Usage: pullpitoK <repository> <token>
 
-fun perAuthor(events: List<Event>): Map<String, List<Event>> {
-    return events
-            .filter {
-                it.type == Type.IssueCommentEvent.name ||
-                        it.type == Type.PullRequestEvent.name ||
-                        it.type == Type.PullRequestReviewCommentEvent.name
-            }
-            .groupBy { it.actor.login }
-}
+A command line tool to display a summary of GitHub pull requests.
+
+<repository>: a GitHub repository.
+    Example: python/peps
+
+<token>: an optional GitHub personal access token""")
+            false
+        } else true
+
+fun perAuthor(events: List<Event>): Map<String, List<Event>> = events
+        .filter {
+            it.type in Type.values().map(Type::name)
+        }
+        .groupBy { it.actor.login }
 
 fun counters(
         name: String,
         eventsPerAuthor: Map<String, List<Event>>,
         predicate: (Event) -> Boolean): String {
-    var counters = ""
-    counters = counters.plus("\t$name")
+    var counters = "\t$name"
     for (events in eventsPerAuthor.entries) {
         val author = events.key
         val count = events.value
                 .filter(predicate)
                 .count()
         if (count > 0)
-            counters = counters.plus("\n\t\t$author: $count")
+            counters += "\n\t\t$author: $count"
     }
     return counters
 }
