@@ -23,12 +23,8 @@ class AppTest {
                 "\tfake title\n\t\tauthor: 1",
                 counters(
                         "fake title",
-                        mapOf(
-                                Pair(
-                                        "author",
-                                        listOf(
-                                                Event(id = "1", type = "PullRequestEvent", actor = Actor("alice"), payload = Payload("opened"))
-                                        ))), { true }));
+                        mapOf("author" to listOf(Event(id = "1", type = "PullRequestEvent", actor = Actor("alice"), payload = Payload("opened")))),
+                        { true }))
     }
 
     @Test
