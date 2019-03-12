@@ -15,11 +15,8 @@ repositories {
 
 dependencies {
     val ktorVersion = "1.1.2"
-    compile("io.ktor:ktor-client-apache:$ktorVersion")
-    compile("io.ktor:ktor-client-gson:$ktorVersion")
+    compile("com.fasterxml.jackson.core:jackson-databind:2.9.8")
     implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
-    testImplementation("io.ktor:ktor-client-mock:$ktorVersion")
-    testImplementation("io.ktor:ktor-client-mock-jvm:$ktorVersion")
     testImplementation("org.jetbrains.kotlin:kotlin-test")
     testImplementation("org.jetbrains.kotlin:kotlin-test-junit")
 }
