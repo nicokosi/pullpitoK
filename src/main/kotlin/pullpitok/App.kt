@@ -1,26 +1,11 @@
 package pullpitok
 
-import io.ktor.client.HttpClient
-import io.ktor.client.engine.apache.Apache
-import io.ktor.client.features.json.GsonSerializer
-import io.ktor.client.features.json.JsonFeature
-import kotlinx.coroutines.runBlocking
 import pullpitok.github.Action
 import pullpitok.github.Event
 import pullpitok.github.EventClient
 import pullpitok.github.Type
 
-object HttpClientProvider {
-
-    fun httpClient() = HttpClient(Apache) {
-        install(JsonFeature) {
-            serializer = GsonSerializer()
-        }
-    }
-
-}
-
-fun main(args: Array<String>) = runBlocking {
+fun main(args: Array<String>) {
 
     if (!checkArgs(args)) System.exit(0)
     val repo = args[0]
@@ -28,7 +13,7 @@ fun main(args: Array<String>) = runBlocking {
 
     val allEvents = mutableListOf<Event>()
     for (pageNumber in 1..10) {
-        val events = EventClient(httpClient = HttpClientProvider.httpClient())
+        val events = EventClient()
                 .githubEvents(repo, token, page = pageNumber)
         if (events.isNotEmpty()) allEvents.addAll(events)
         else break
