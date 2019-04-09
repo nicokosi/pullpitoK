@@ -7,6 +7,8 @@ import pullpitok.github.Type
 
 fun main(args: Array<String>) {
 
+    System.setProperty("java.library.path", System.getenv("GRAALVM_HOME") + "/jre/lib")
+
     if (!checkArgs(args)) System.exit(0)
     val repo = args[0]
     val token = args.getOrNull(1) ?: ""
