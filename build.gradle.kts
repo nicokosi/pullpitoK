@@ -14,7 +14,6 @@ repositories {
 }
 
 dependencies {
-    val ktorVersion = "1.1.2"
     compile("com.fasterxml.jackson.core:jackson-databind:2.9.8")
     implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
     testImplementation("org.jetbrains.kotlin:kotlin-test")
