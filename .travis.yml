@@ -6,10 +6,10 @@ jdk:
 services:
   - docker
 
-before_deploy:
+before_release:
   - ./generate-executable.sh
 
-deploy:
+release:
   api_key: $GITHUB_OAUTH_TOKEN
   file: "./pullpitoK"
   provider: releases
@@ -17,7 +17,8 @@ deploy:
   draft: true
   on:
     repo: nicokosi/pullpitoK
-    branches:
-      only:
-        - master
-        - graalvm-test-deploy
+
+branches:
+  only:
+  - master
+  - /^release-.*$/
