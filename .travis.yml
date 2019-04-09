@@ -2,3 +2,22 @@ language: java
 
 jdk:
 - openjdk11
+
+services:
+  - docker
+
+before_deploy:
+  - ./generate-executable.sh
+
+deploy:
+  api_key: $GITHUB_OAUTH_TOKEN
+  file: "./pullpitoK"
+  provider: releases
+  skip_cleanup: true
+  draft: true
+  on:
+    repo: nicokosi/pullpitoK
+    branches:
+      only:
+        - master
+        - graalvm-test-deploy
