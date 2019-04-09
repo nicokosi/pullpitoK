@@ -3,13 +3,14 @@ plugins {
     id("org.jetbrains.kotlin.jvm").version(kotlinVersion)
     id("com.adarshr.test-logger").version("1.6.0")
     id("se.patrikerdes.use-latest-versions") version "0.2.9"
+    id("com.github.ben-manes.versions") version "0.21.0"
+    id("com.github.johnrengelman.shadow") version "5.0.0"
     application
 }
 
 repositories {
     jcenter()
-    maven { url = uri("https://kotlin.bintray.com/ktor") }
-    maven { url = uri("https://kotlin.bintray.com/kotlinx") } // Required since 0.9.4 since ktor-client-gson includes ktor-client-json that depends on kotlinx-serialization
+    maven { url = uri("https://plugins.gradle.org/m2") }
 }
 
 dependencies {
