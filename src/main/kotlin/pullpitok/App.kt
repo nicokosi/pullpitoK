@@ -6,6 +6,7 @@ import pullpitok.github.EventClient
 import pullpitok.github.Type
 
 fun main(args: Array<String>) {
+    loadLibSunec()
 
     if (!checkArgs(args)) System.exit(0)
     val repo = args[0]
@@ -18,17 +19,16 @@ fun main(args: Array<String>) {
         if (events.isNotEmpty()) allEvents.addAll(events)
         else break
     }
-    println("""pull requests for "$repo" ->""")
-    val eventsPerAuthor = perAuthor(allEvents)
+    displayEvents(repo, allEvents)
+}
 
-    val opened: (Event) -> Boolean = { it.type == Type.PullRequestEvent.name && it.payload.action == Action.opened.name }
-    println("\n" + counters("opened per author", eventsPerAuthor, opened))
-
-    val commented: (Event) -> Boolean = { it.type == Type.PullRequestReviewCommentEvent.name && it.payload.action == Action.created.name }
-    println("\n" + counters("commented per author", eventsPerAuthor, commented))
-
-    val closed: (Event) -> Boolean = { it.type == Type.PullRequestEvent.name && it.payload.action == Action.closed.name }
-    println("\n" + counters("closed per author", eventsPerAuthor, closed))
+private fun loadLibSunec() {
+    val libSunec = System.getenv("PULLPITOK_LIBSUNEC")
+    if (libSunec != null && !libSunec.isEmpty()) {
+        System.setProperty("java.library.path", libSunec)
+    } else {
+        System.setProperty("java.library.path", System.getenv("JAVA_HOME"))
+    }
 }
 
 fun checkArgs(args: Array<String>): Boolean =
@@ -43,6 +43,20 @@ A command line tool to display a summary of GitHub pull requests.
 <token>: an optional GitHub personal access token""")
             false
         } else true
+
+private fun displayEvents(repo: String, allEvents: MutableList<Event>) {
+    println("""pull requests for "$repo" ->""")
+    val eventsPerAuthor = perAuthor(allEvents)
+
+    val opened: (Event) -> Boolean = { it.type == Type.PullRequestEvent.name && it.payload.action == Action.opened.name }
+    println("\n" + counters("opened per author", eventsPerAuthor, opened))
+
+    val commented: (Event) -> Boolean = { it.type == Type.PullRequestReviewCommentEvent.name && it.payload.action == Action.created.name }
+    println("\n" + counters("commented per author", eventsPerAuthor, commented))
+
+    val closed: (Event) -> Boolean = { it.type == Type.PullRequestEvent.name && it.payload.action == Action.closed.name }
+    println("\n" + counters("closed per author", eventsPerAuthor, closed))
+}
 
 fun perAuthor(events: List<Event>): Map<String, List<Event>> = events
         .filter {

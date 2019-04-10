@@ -19,6 +19,16 @@ In order to show the 'usage':
 
     ./gradlew run --args "--help"
 
+## Install
+
+In order to generate a *nix executable, run:
+
+    ./generate-executable.sh
+
+An executable file named `pullpitoK` should be generated in the current directory. It can then be run:
+
+    ./pullpitoK
+
 ## Upgrade dependencies
 
     ./gradlew useLatestVersions
