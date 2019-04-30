@@ -1,5 +1,5 @@
 plugins {
-    val kotlinVersion = "1.3.21"
+    val kotlinVersion = "1.3.31"
     id("org.jetbrains.kotlin.jvm").version(kotlinVersion)
     id("com.adarshr.test-logger").version("1.6.0")
     id("se.patrikerdes.use-latest-versions") version "0.2.9"
