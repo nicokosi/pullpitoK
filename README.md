@@ -29,6 +29,15 @@ An executable file named `pullpitoK` should be generated in the current director
 
     ./pullpitoK
 
+## Inspect
+
+Code inspection is configured on the master branch. See the [sonarcloud.io's dashboard](https://sonarcloud.io/dashboard?id=nicokosi_pullpitoK).
+
+In order to inspect the code locally, run:
+
+    docker run -d --name sonarqube -p 9000:9000 sonarqube
+    ./gradlew sonarqube --info
+
 ## Upgrade dependencies
 
     ./gradlew useLatestVersions

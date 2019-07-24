@@ -1,4 +1,10 @@
 language: java
-
 jdk:
 - openjdk11
+addons:
+  sonarcloud:
+    organization: nicokosi-github
+    token:
+      secure: "b+he+vjtLya3Si/5vHVPMJhO6sVs44su1aW723X5Wk8XQta0RfvF2Wp1tchOj+C3mq9B9NHiovHO6+vDwlerqmiTSQEHvOKGubnhto1umUj84SjnDI3VKfHET0kMjHkSo5EjvKH4oxAHbuTwC4ZXj8hh42LuWcwmXAh4VsgQYakqnVFCnCFoJFEAI8Uy1lCsQNtQ7KB+ZkSjyJ+0czCx/QHbhM6Iax5CUIts6mET1gXtPEOnXmWNyooCkNWJWXGSobV85GJLET6sX9N4xQKz3adb4Bivbn30S2ncsyl4KI/Fz14wBHe8h7eYvaqW7PNL1grjpQ4Ip72b7GSCLX9SKfrJUUFk6gkpzK4sqGkyH+FzRjngsK+HkdhSbGPCwz0wWRVBjIFkuIEZ2sxuknoHdRFe3OvrHiojpzpQoaY1msccIKmRznkK6OihbqU2fqic4G1FgBJ42QFmh0SVryEF7ETwvUVQ6QPyRh9IUzDBwvcOq3b0UNnaGOZlZoZ7wPR463fUnC8nGL6noPPW/REj8rYnPfwvzVy6a743L99jFXuibhrkqtTD+uuBF+E7cP1oEir3pfkV/mRTQdOmeaj+TwYvJ13ouSwnVaqJ76+FDbWbWJ3OXI7SxIUsgykwkTRQkMqQVmtxAvKRYLEhJ+g1X0wVhrIv/z2fJKfbb2VKhBo="
+script:
+- sonar-scanner
