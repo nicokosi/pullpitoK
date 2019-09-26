@@ -45,17 +45,15 @@ A command line tool to display a summary of GitHub pull requests.
         } else true
 
 private fun displayEvents(repo: String, allEvents: MutableList<Event>) {
-    println("""pull requests for "$repo" ->""")
     val eventsPerAuthor = perAuthor(allEvents)
-
     val opened: (Event) -> Boolean = { it.type == Type.PullRequestEvent.name && it.payload.action == Action.opened.name }
-    println("\n" + counters("opened per author", eventsPerAuthor, opened))
-
     val commented: (Event) -> Boolean = { it.type == Type.PullRequestReviewCommentEvent.name && it.payload.action == Action.created.name }
-    println("\n" + counters("commented per author", eventsPerAuthor, commented))
-
     val closed: (Event) -> Boolean = { it.type == Type.PullRequestEvent.name && it.payload.action == Action.closed.name }
-    println("\n" + counters("closed per author", eventsPerAuthor, closed))
+    println("""pull requests for "$repo" ->
+        opened per author ${counters(eventsPerAuthor, opened)}
+        commented per author ${counters(eventsPerAuthor, commented)}
+        closed per author ${counters(eventsPerAuthor, closed)}
+    """)
 }
 
 fun perAuthor(events: List<Event>): Map<String, List<Event>> = events
@@ -65,10 +63,10 @@ fun perAuthor(events: List<Event>): Map<String, List<Event>> = events
         .groupBy { it.actor.login }
 
 fun counters(
-        name: String,
         eventsPerAuthor: Map<String, List<Event>>,
         predicate: (Event) -> Boolean): String {
-    var counters = "\t$name"
+    eventsPerAuthor.entries
+    var counters = ""
     for (events in eventsPerAuthor.entries) {
         val author = events.key
         val count = events.value

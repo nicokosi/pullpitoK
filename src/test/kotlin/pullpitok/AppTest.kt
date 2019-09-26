@@ -13,17 +13,15 @@ class AppTest {
     @Test
     fun `no counters`() {
         assertEquals(
-                "\tfake title",
-                counters("fake title", emptyMap(), { true }));
+                "",
+                counters(emptyMap(), { true }));
     }
 
     @Test
     fun `one counter`() {
         assertEquals(
-                "\tfake title\n\t\tauthor: 1",
-                counters(
-                        "fake title",
-                        mapOf("author" to listOf(Event(id = "1", type = "PullRequestEvent", actor = Actor("alice"), payload = Payload("opened")))),
+                "\n\t\tauthor: 1",
+                counters(mapOf("author" to listOf(Event(id = "1", type = "PullRequestEvent", actor = Actor("alice"), payload = Payload("opened")))),
                         { true }))
     }
 
