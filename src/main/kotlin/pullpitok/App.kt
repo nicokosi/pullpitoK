@@ -4,11 +4,12 @@ import pullpitok.github.Action
 import pullpitok.github.Event
 import pullpitok.github.EventClient
 import pullpitok.github.Type
+import kotlin.system.exitProcess
 
 fun main(args: Array<String>) {
     loadLibSunec()
 
-    if (!checkArgs(args)) System.exit(0)
+    if (!checkArgs(args)) exitProcess(0)
     val repo = args[0]
     val token = args.getOrNull(1) ?: ""
 
@@ -24,7 +25,7 @@ fun main(args: Array<String>) {
 
 private fun loadLibSunec() {
     val libSunec = System.getenv("PULLPITOK_LIBSUNEC")
-    if (libSunec != null && !libSunec.isEmpty()) {
+    if (libSunec != null && libSunec.isNotEmpty()) {
         System.setProperty("java.library.path", libSunec)
     } else {
         System.setProperty("java.library.path", System.getenv("JAVA_HOME"))
@@ -46,9 +47,9 @@ A command line tool to display a summary of GitHub pull requests.
 
 private fun displayEvents(repo: String, allEvents: MutableList<Event>) {
     val eventsPerAuthor = perAuthor(allEvents)
-    val opened: (Event) -> Boolean = { it.type == Type.PullRequestEvent.name && it.payload.action == Action.opened.name }
-    val commented: (Event) -> Boolean = { it.type == Type.PullRequestReviewCommentEvent.name && it.payload.action == Action.created.name }
-    val closed: (Event) -> Boolean = { it.type == Type.PullRequestEvent.name && it.payload.action == Action.closed.name }
+    val opened: (Event) -> Boolean = { it.type == Type.PullRequestEvent.name && it.payload.action == Action.Opened.name }
+    val commented: (Event) -> Boolean = { it.type == Type.PullRequestReviewCommentEvent.name && it.payload.action == Action.Created.name }
+    val closed: (Event) -> Boolean = { it.type == Type.PullRequestEvent.name && it.payload.action == Action.Closed.name }
     println("""pull requests for "$repo" ->
         opened per author ${counters(eventsPerAuthor, opened)}
         commented per author ${counters(eventsPerAuthor, commented)}
