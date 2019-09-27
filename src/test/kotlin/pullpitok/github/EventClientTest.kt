@@ -3,7 +3,7 @@ package pullpitok.github
 import org.junit.Test
 import kotlin.test.assertEquals
 
-class GithubEventTest {
+class EventClientTest {
 
     @Test
     fun `can return no events with a mocked GitHub API`() {
@@ -24,9 +24,9 @@ class GithubEventTest {
                         Event(id = "3.1", type = "PullRequestReviewCommentEvent", actor = Actor("carol"), payload = Payload("created")),
                         Event(id = "3.2", type = "PullRequestReviewCommentEvent", actor = Actor("bob"), payload = Payload("created")),
                         Event(id = "5", type = "PullRequestEvent", actor = Actor("eve"), payload = Payload("closed"))),
-                EventClient().events(loadFile("/events.json")))
+                EventClient().events(loadJsonEventFile()))
     }
 
-    private fun loadFile(path: String) = GithubEventTest::class.java.getResource(path).readText()
+    private fun loadJsonEventFile() = EventClientTest::class.java.getResource("/events.json").readText()
 
 }
