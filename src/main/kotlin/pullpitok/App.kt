@@ -8,19 +8,13 @@ import kotlin.system.exitProcess
 
 fun main(args: Array<String>) {
     loadLibSunec()
-
     if (!checkArgs(args)) exitProcess(0)
-    val repo = args[0]
+    val repos = args[0].split(",")
     val token = args.getOrNull(1) ?: ""
-
-    val allEvents = mutableListOf<Event>()
-    for (pageNumber in 1..10) {
-        val events = EventClient()
-                .githubEvents(repo, token, page = pageNumber)
-        if (events.isNotEmpty()) allEvents.addAll(events)
-        else break
-    }
-    displayEvents(repo, allEvents)
+    repos.parallelStream()
+            .forEach { repo ->
+                displayEvents(repo, token)
+            }
 }
 
 private fun loadLibSunec() {
@@ -34,27 +28,35 @@ private fun loadLibSunec() {
 
 fun checkArgs(args: Array<String>): Boolean =
         if (args.size !in (1..2) || args[0] in setOf("", "-h", "--help")) {
-            println("""Usage: pullpitoK <repository> <token>
+            println("""Usage: pullpitoK <repositories> <token>
 
 A command line tool to display a summary of GitHub pull requests.
 
-<repository>: a GitHub repository.
-    Example: python/peps
+<repositories>: comma-separated list of GitHub repositories
+    Examples:
+        python/peps
+        python/peps,haskell/rfcs
 
 <token>: an optional GitHub personal access token""")
             false
         } else true
 
-private fun displayEvents(repo: String, allEvents: MutableList<Event>) {
+private fun displayEvents(repo: String, token: String) {
+    val allEvents = mutableListOf<Event>()
+    for (pageNumber in 1..10) {
+        val events = EventClient().githubEvents(repo, token, page = pageNumber)
+        if (events.isNotEmpty()) allEvents.addAll(events)
+        else break
+    }
     val eventsPerAuthor = perAuthor(allEvents)
     val opened: (Event) -> Boolean = { it.type == Type.PullRequestEvent.name && it.payload.action == Action.opened.name }
     val commented: (Event) -> Boolean = { it.type == Type.PullRequestReviewCommentEvent.name && it.payload.action == Action.created.name }
     val closed: (Event) -> Boolean = { it.type == Type.PullRequestEvent.name && it.payload.action == Action.closed.name }
     println("""pull requests for "$repo" ->
-        opened per author ${counters(eventsPerAuthor, opened)}
-        commented per author ${counters(eventsPerAuthor, commented)}
-        closed per author ${counters(eventsPerAuthor, closed)}
-    """)
+            opened per author ${counters(eventsPerAuthor, opened)}
+            commented per author ${counters(eventsPerAuthor, commented)}
+            closed per author ${counters(eventsPerAuthor, closed)}
+                """)
 }
 
 fun perAuthor(events: List<Event>): Map<String, List<Event>> = events
@@ -78,4 +80,3 @@ fun counters(
     }
     return counters
 }
-
