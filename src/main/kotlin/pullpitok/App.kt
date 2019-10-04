@@ -47,9 +47,9 @@ A command line tool to display a summary of GitHub pull requests.
 
 private fun displayEvents(repo: String, allEvents: MutableList<Event>) {
     val eventsPerAuthor = perAuthor(allEvents)
-    val opened: (Event) -> Boolean = { it.type == Type.PullRequestEvent.name && it.payload.action == Action.Opened.name }
-    val commented: (Event) -> Boolean = { it.type == Type.PullRequestReviewCommentEvent.name && it.payload.action == Action.Created.name }
-    val closed: (Event) -> Boolean = { it.type == Type.PullRequestEvent.name && it.payload.action == Action.Closed.name }
+    val opened: (Event) -> Boolean = { it.type == Type.PullRequestEvent.name && it.payload.action == Action.opened.name }
+    val commented: (Event) -> Boolean = { it.type == Type.PullRequestReviewCommentEvent.name && it.payload.action == Action.created.name }
+    val closed: (Event) -> Boolean = { it.type == Type.PullRequestEvent.name && it.payload.action == Action.closed.name }
     println("""pull requests for "$repo" ->
         opened per author ${counters(eventsPerAuthor, opened)}
         commented per author ${counters(eventsPerAuthor, commented)}
