@@ -18,12 +18,9 @@ fun main(args: Array<String>) {
 }
 
 private fun loadLibSunec() {
-    val libSunec = System.getenv("PULLPITOK_LIBSUNEC")
-    if (libSunec != null && libSunec.isNotEmpty()) {
-        System.setProperty("java.library.path", libSunec)
-    } else {
-        System.setProperty("java.library.path", System.getenv("JAVA_HOME"))
-    }
+    System.setProperty(
+            "java.library.path",
+            System.getenv("PULLPITOK_LIBSUNEC") ?: System.getenv("JAVA_HOME"))
 }
 
 fun checkArgs(args: Array<String>): Boolean =
