@@ -1,12 +1,12 @@
 package pullpitok
 
+import kotlin.test.assertEquals
+import kotlin.test.assertFalse
+import kotlin.test.assertTrue
 import org.junit.Test
 import pullpitok.github.Actor
 import pullpitok.github.Event
 import pullpitok.github.Payload
-import kotlin.test.assertEquals
-import kotlin.test.assertFalse
-import kotlin.test.assertTrue
 
 class AppTest {
 
@@ -38,5 +38,4 @@ class AppTest {
         assertTrue(checkArgs(arrayOf("org/repo")))
         assertTrue(checkArgs(arrayOf("org/repo", "token")))
     }
-
 }

@@ -7,6 +7,7 @@ Like [nicokosi/pullpito](https://github.com/nicokosi/pullpito/), but implemented
     ./gradlew build
 
 ## Run
+
 For a public Github repository, run:
 
     ./gradlew run --args "python/peps"
@@ -30,6 +31,10 @@ An executable file named `pullpitoK` should be generated in the current director
     ./pullpitoK
 
 ## Dev tasks
+
+### Format the code
+
+    ./gradlew formatKotlin
 
 ### Inspect the code
 

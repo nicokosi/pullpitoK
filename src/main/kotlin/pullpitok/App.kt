@@ -1,10 +1,10 @@
 package pullpitok
 
+import kotlin.system.exitProcess
 import pullpitok.github.Action
 import pullpitok.github.Event
 import pullpitok.github.EventClient
 import pullpitok.github.Type
-import kotlin.system.exitProcess
 
 fun main(args: Array<String>) {
     loadLibSunec()
@@ -63,8 +63,9 @@ fun perAuthor(events: List<Event>): Map<String, List<Event>> = events
         .groupBy { it.actor.login }
 
 fun counters(
-        eventsPerAuthor: Map<String, List<Event>>,
-        predicate: (Event) -> Boolean): String {
+    eventsPerAuthor: Map<String, List<Event>>,
+    predicate: (Event) -> Boolean
+): String {
     eventsPerAuthor.entries
     var counters = ""
     for (events in eventsPerAuthor.entries) {
