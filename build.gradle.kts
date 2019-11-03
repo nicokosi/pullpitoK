@@ -6,6 +6,7 @@ plugins {
     id("com.github.ben-manes.versions") version "0.28.0"
     id("com.github.johnrengelman.shadow") version "5.2.0"
     id("com.adarshr.test-logger") version "2.0.0"
+    id("com.diffplug.gradle.spotless") version "4.5.1"
     application
 }
 
@@ -40,5 +41,16 @@ tasks.withType<DependencyUpdatesTask> {
                 }
             }
         }
+    }
+}
+
+spotless {
+    kotlin {
+        ktlint()
+    }
+    kotlinGradle {
+        // same as kotlin, but for .gradle.kts files (defaults to '*.gradle.kts')
+        target("*.gradle.kts")
+        ktlint()
     }
 }

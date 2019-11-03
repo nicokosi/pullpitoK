@@ -1,7 +1,7 @@
 package pullpitok.github
 
-import org.junit.Test
 import kotlin.test.assertEquals
+import org.junit.Test
 
 class EventClientTest {
 
@@ -28,5 +28,4 @@ class EventClientTest {
     }
 
     private fun loadJsonEventFile() = EventClientTest::class.java.getResource("/events.json").readText()
-
 }
