@@ -32,6 +32,10 @@ An executable file named `pullpitoK` should be generated in the current director
 
 ## Dev tasks
 
+### Format the code
+
+    ./gradlew spotlessApply
+
 ### Inspect the code
 
 Code inspection is configured on the master branch. See the [sonarcloud.io's dashboard](https://sonarcloud.io/dashboard?id=nicokosi_pullpitoK).
