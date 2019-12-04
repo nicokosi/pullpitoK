@@ -7,6 +7,7 @@ Like [nicokosi/pullpito](https://github.com/nicokosi/pullpito/), but implemented
     ./gradlew build
 
 ## Run
+
 For a public Github repository, run:
 
     ./gradlew run --args "python/peps"
@@ -17,7 +18,7 @@ For a private Github repository, add a authentication token:
 
 In order to show the 'usage':
 
-    ./gradlew run --args "--help"
+    ./gradlew run --args="--help"
 
 ## Install
 
