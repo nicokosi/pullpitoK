@@ -8,6 +8,7 @@ enum class Action {
     closed,
     opened
 }
+
 enum class Type {
     PullRequestEvent,
     PullRequestReviewCommentEvent

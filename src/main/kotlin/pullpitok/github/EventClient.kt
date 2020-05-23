@@ -14,12 +14,12 @@ class EventClient {
     fun githubEvents(repo: String, token: String?, page: Int): List<Event> {
         val url = "https://api.github.com/repos/$repo/events?page=$page"
         val request = HttpRequest.newBuilder()
-                .timeout(Duration.ofSeconds(30))
-                .header("Content-Type", "application/json")
-                .uri(URI.create(url))
+            .timeout(Duration.ofSeconds(30))
+            .header("Content-Type", "application/json")
+            .uri(URI.create(url))
         if (token != null) {
                 request.header("Authorization", "token $token")
-        }
+            }
         val response = client.send(request.build(), BodyHandlers.ofString())
         if (response.statusCode() != 200) {
             fail("Status code is ${response.statusCode()} for $url")
@@ -39,5 +39,4 @@ class EventClient {
     }
 
     private fun fail(message: String): Nothing = throw IllegalArgumentException(message)
-
 }
