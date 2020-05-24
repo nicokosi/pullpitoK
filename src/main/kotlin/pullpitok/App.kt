@@ -16,11 +16,8 @@ fun main(args: Array<String>) {
                 displayEvents(repo, token)
             }
 }
-
 private fun loadLibSunec() {
-    System.setProperty(
-            "java.library.path",
-            System.getenv("PULLPITOK_LIBSUNEC") ?: System.getenv("JAVA_HOME"))
+    System.setProperty("java.library.path", System.getenv("JAVA_HOME"))
 }
 
 fun checkArgs(args: Array<String>): Boolean =
