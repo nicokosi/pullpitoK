@@ -10,7 +10,7 @@ echo "JAR file has been built! ✅"
 echo "Install GraalVM via SDKMAN!:"
 curl --silent "https://get.sdkman.io" | bash || echo 'SDKMAN! already installed'
 source "$HOME/.sdkman/bin/sdkman-init.sh"
-GRAALVM_VERSION="19.3.0.r11-grl"
+GRAALVM_VERSION="20.1.0.r11-grl"
 sdkman_auto_answer=true sdk install java $GRAALVM_VERSION > /dev/null || echo "GraalVM $GRAALVM_VERSION already installed."
 sdk use java $GRAALVM_VERSION
 
@@ -25,10 +25,8 @@ native-image \
    echo ' => Check the executable: ' && ./pullpitoK
 echo "Executable has been built! ✅"
 
-echo "Executable has been generated in local directory can be run with
-a 'PULLPITOK_LIBSUNEC' environment variable in order to load the'libsunec' shared library (Sun
-Elliptic Curve crypto) bundled in the Java Development Kit.
-For instance, on Linux:
- $> PULLPITOK_LIBSUNEC=$JAVA_HOME/jre/lib/amd64 ./pullpitoK python/peps
-or on macOS:
- $> PULLPITOK_LIBSUNEC=$JAVA_HOME/jre/lib ./pullpitoK python/peps"
+echo "Executable has been generated in local directory.
+
+For instance, run the following command for python/peps (https://github.com/python/peps):
+
+ $> ./pullpitoK python/peps"
