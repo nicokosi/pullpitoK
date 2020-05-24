@@ -10,7 +10,7 @@ fun main(args: Array<String>) {
     loadLibSunec()
     if (!checkArgs(args)) exitProcess(0)
     val repos = args[0].split(",")
-    val token = args.getOrNull(1) ?: ""
+    val token = args.getOrNull(1)
     repos.parallelStream()
             .forEach { repo ->
                 displayEvents(repo, token)
@@ -38,7 +38,7 @@ A command line tool to display a summary of GitHub pull requests.
             false
         } else true
 
-private fun displayEvents(repo: String, token: String) {
+private fun displayEvents(repo: String, token: String?) {
     val allEvents = mutableListOf<Event>()
     for (pageNumber in 1..10) {
         val events = EventClient().githubEvents(repo, token, page = pageNumber)
