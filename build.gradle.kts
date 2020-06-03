@@ -7,6 +7,7 @@ plugins {
     id("com.github.johnrengelman.shadow") version "6.1.0"
     id("com.adarshr.test-logger") version "2.1.1"
     id("com.diffplug.spotless") version "5.8.2"
+    id("org.owasp.dependencycheck") version "5.3.2"
     application
 }
 
@@ -16,11 +17,14 @@ repositories {
 }
 
 dependencies {
+    compileOnly("org.owasp:dependency-check-gradle:5.3.2")
     implementation("com.fasterxml.jackson.core:jackson-databind:2.11.3")
     implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
     testImplementation("org.jetbrains.kotlin:kotlin-test")
     testImplementation("org.jetbrains.kotlin:kotlin-test-junit")
 }
+
+apply(plugin= "org.owasp.dependencycheck")
 
 application {
     mainClassName = "pullpitok.AppKt"

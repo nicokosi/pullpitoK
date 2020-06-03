@@ -49,6 +49,12 @@ In order to inspect the code locally, run:
 
     ./gradlew useLatestVersions
 
+### Check for vulnerabilities
+
+Known vulnerabilities in dependencies can be reported via:
+
+    ./gradlew dependencyCheckAnalyze
+
 ### Upgrade the build system
 
 Check the current version in [the `Gradle` documentation](https://docs.gradle.org) and run:
