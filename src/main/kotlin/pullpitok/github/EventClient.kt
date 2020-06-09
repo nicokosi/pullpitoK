@@ -29,20 +29,15 @@ class EventClient {
 
     fun events(json: String): List<Event> {
         return ObjectMapper().readTree(json)
-                .map { node ->
+                .map {
                     Event(
-                            node.get("id").asText(),
-                            node.get("type").asText(),
-                            Actor(
-                                    node.get("actor").get("login").asText()),
-                            Payload(
-                                    node?.get("payload")?.get("action")?.asText().orEmpty())
-                    )
+                            it.get("id").asText(),
+                            it.get("type").asText(),
+                            Actor(it.get("actor").get("login").asText()),
+                            Payload(it?.get("payload")?.get("action")?.asText().orEmpty()))
                 }
     }
 
-    private fun fail(message: String): Nothing {
-        throw IllegalArgumentException(message)
-    }
+    private fun fail(message: String): Nothing = throw IllegalArgumentException(message)
 
 }
