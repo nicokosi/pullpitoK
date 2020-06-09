@@ -27,16 +27,16 @@ class AppTest {
 
     @Test
     fun `show usage`() {
-        assertFalse(checkArgs(arrayOf("")))
-        assertFalse(checkArgs(arrayOf("-h")))
-        assertFalse(checkArgs(arrayOf("--help")))
-        assertFalse(checkArgs(arrayOf("one", "two", "three")))
+        assertTrue(invalidArguments(arrayOf("")))
+        assertTrue(invalidArguments(arrayOf("-h")))
+        assertTrue(invalidArguments(arrayOf("--help")))
+        assertTrue(invalidArguments(arrayOf("one", "two", "three")))
     }
 
     @Test
     fun `do not show usage`() {
-        assertTrue(checkArgs(arrayOf("org/repo")))
-        assertTrue(checkArgs(arrayOf("org/repo", "token")))
+        assertFalse(invalidArguments(arrayOf("org/repo")))
+        assertFalse(invalidArguments(arrayOf("org/repo", "token")))
     }
 
 }

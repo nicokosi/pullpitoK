@@ -7,33 +7,19 @@ import pullpitok.github.Type
 import kotlin.system.exitProcess
 
 fun main(args: Array<String>) {
-    loadLibSunec()
-    if (!checkArgs(args)) exitProcess(0)
+    if (invalidArguments(args)) {
+        println(usage)
+        exitProcess(0)
+    }
     val repos = args[0].split(",")
     val token = args.getOrNull(1)
-    repos.parallelStream()
-            .forEach { repo ->
-                displayEvents(repo, token)
-            }
-}
-private fun loadLibSunec() {
-    System.setProperty("java.library.path", System.getenv("JAVA_HOME"))
+    repos
+            .parallelStream()
+            .forEach { displayEvents(it, token) }
 }
 
-fun checkArgs(args: Array<String>): Boolean =
-        if (args.size !in (1..2) || args[0] in setOf("", "-h", "--help")) {
-            println("""Usage: pullpitoK <repositories> <token>
-
-A command line tool to display a summary of GitHub pull requests.
-
-<repositories>: comma-separated list of GitHub repositories
-    Examples:
-        python/peps
-        python/peps,haskell/rfcs
-
-<token>: an optional GitHub personal access token""")
-            false
-        } else true
+internal fun invalidArguments(args: Array<String>): Boolean =
+        args.size !in (1..2) || args[0] in setOf("", "-h", "--help")
 
 private fun displayEvents(repo: String, token: String?) {
     val allEvents = mutableListOf<Event>()
@@ -53,13 +39,11 @@ private fun displayEvents(repo: String, token: String?) {
                 """)
 }
 
-fun perAuthor(events: List<Event>): Map<String, List<Event>> = events
-        .filter {
-            it.type in Type.values().map(Type::name)
-        }
+private fun perAuthor(events: List<Event>): Map<String, List<Event>> = events
+        .filter { it.type in Type.values().map(Type::name) }
         .groupBy { it.actor.login }
 
-fun counters(
+internal fun counters(
         eventsPerAuthor: Map<String, List<Event>>,
         predicate: (Event) -> Boolean): String {
     eventsPerAuthor.entries
@@ -74,3 +58,14 @@ fun counters(
     }
     return counters
 }
+
+val usage = """Usage: pullpitoK <repositories> <token>
+
+A command line tool to display a summary of GitHub pull requests.
+
+<repositories>: comma-separated list of GitHub repositories
+    Examples:
+        python/peps
+        python/peps,haskell/rfcs
+
+<token>: an optional GitHub personal access token"""
