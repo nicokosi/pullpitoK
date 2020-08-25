@@ -6,7 +6,7 @@ plugins {
     id("com.github.ben-manes.versions") version "0.29.0"
     id("com.github.johnrengelman.shadow") version "6.0.0"
     id("com.adarshr.test-logger") version "2.1.0"
-    id("com.diffplug.spotless") version "5.1.2"
+    id("com.diffplug.spotless") version "5.2.0"
     application
 }
 
