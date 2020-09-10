@@ -1,7 +1,7 @@
 import com.github.benmanes.gradle.versions.updates.DependencyUpdatesTask
 
 plugins {
-    id("org.jetbrains.kotlin.jvm") version "1.4.0"
+    id("org.jetbrains.kotlin.jvm") version "1.4.10"
     id("se.patrikerdes.use-latest-versions") version "0.2.14"
     id("com.github.ben-manes.versions") version "0.33.0"
     id("com.github.johnrengelman.shadow") version "6.0.0"
