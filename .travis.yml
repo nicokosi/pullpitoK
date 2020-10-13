@@ -2,3 +2,10 @@ language: java
 
 jdk:
 - openjdk11
+
+jobs:
+  include:
+    - stage: check
+      script: ./gradlew check
+    - stage: check-dependencies
+      script: ./gradlew dependencyCheckAnalyze
