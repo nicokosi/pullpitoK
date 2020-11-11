@@ -7,7 +7,7 @@ plugins {
     id("com.github.johnrengelman.shadow") version "6.1.0"
     id("com.adarshr.test-logger") version "2.1.1"
     id("com.diffplug.spotless") version "5.8.2"
-    id("org.owasp.dependencycheck") version "6.0.2"
+    id("org.owasp.dependencycheck") version "6.0.3"
     application
 }
 
