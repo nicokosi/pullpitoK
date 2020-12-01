@@ -1,12 +1,12 @@
 import com.github.benmanes.gradle.versions.updates.DependencyUpdatesTask
 
 plugins {
-    id("org.jetbrains.kotlin.jvm") version "1.4.20"
-    id("se.patrikerdes.use-latest-versions") version "0.2.15"
-    id("com.github.ben-manes.versions") version "0.36.0"
-    id("com.github.johnrengelman.shadow") version "6.1.0"
     id("com.adarshr.test-logger") version "2.1.1"
     id("com.diffplug.spotless") version "5.8.2"
+    id("com.github.ben-manes.versions") version "0.36.0"
+    id("com.github.johnrengelman.shadow") version "6.1.0"
+    id("org.jetbrains.kotlin.jvm") version "1.4.20"
+    id("se.patrikerdes.use-latest-versions") version "0.2.15"
     application
 }
 
