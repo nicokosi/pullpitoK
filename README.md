@@ -24,7 +24,7 @@ In order to show the 'usage':
 
 In order to generate a *nix executable, run:
 
-    ./generate-executable.sh
+    ./gradlew nativeImage --info
 
 An executable file named `pullpitoK` should be generated in the current directory. It can then be run:
 

@@ -6,6 +6,7 @@ plugins {
     id("com.github.ben-manes.versions") version "0.36.0"
     id("com.github.johnrengelman.shadow") version "6.1.0"
     id("org.jetbrains.kotlin.jvm") version "1.4.20"
+    id("org.mikeneck.graalvm-native-image") version "v0.8.0"
     id("se.patrikerdes.use-latest-versions") version "0.2.15"
     application
 }
@@ -24,6 +25,18 @@ dependencies {
 
 application {
     mainClassName = "pullpitok.AppKt"
+}
+
+nativeImage {
+  graalVmHome = System.getProperty("java.home")
+  mainClass = "pullpitok.AppKt"
+  executableName = "pullpitoK"
+  outputDirectory = file("$buildDir/bin")
+  arguments(
+      " --enable-https",
+      "--no-fallback",
+      "--no-server",
+      "-jar ./build/libs/pullpitoK-all.jar")
 }
 
 fun isNonStable(version: String): Boolean {
