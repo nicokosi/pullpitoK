@@ -28,15 +28,16 @@ application {
 }
 
 nativeImage {
-  graalVmHome = System.getProperty("java.home")
-  mainClass = "pullpitok.AppKt"
-  executableName = "pullpitoK"
-  outputDirectory = file("$buildDir/bin")
-  arguments(
-      " --enable-https",
-      "--no-fallback",
-      "--no-server",
-      "-jar ./build/libs/pullpitoK-all.jar")
+    graalVmHome = System.getProperty("java.home")
+    mainClass = "pullpitok.AppKt"
+    executableName = "pullpitoK"
+    outputDirectory = file("$buildDir/bin")
+    arguments(
+        " --enable-https",
+        "--no-fallback",
+        "--no-server",
+        "-jar ./build/libs/pullpitoK-all.jar"
+    )
 }
 
 fun isNonStable(version: String): Boolean {
