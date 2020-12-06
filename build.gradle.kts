@@ -33,10 +33,9 @@ nativeImage {
     executableName = "pullpitoK"
     outputDirectory = file("$buildDir/bin")
     arguments(
-        " --enable-https",
+        "--enable-https",
         "--no-fallback",
-        "--no-server",
-        "-jar ./build/libs/pullpitoK-all.jar"
+        "--no-server"
     )
 }
 

@@ -14,15 +14,10 @@ GRAALVM_VERSION="20.3.0.r11-grl"
 sdkman_auto_answer=true sdk install java $GRAALVM_VERSION > /dev/null || echo "GraalVM $GRAALVM_VERSION already installed."
 sdk use java $GRAALVM_VERSION
 
-echo "Build executable from JAR via GraalVM:"
-gu install native-image && \
-native-image \
-   --enable-https \
-   --no-fallback \
-   --no-server \
-   -jar ./build/libs/pullpitoK-all.jar \
-   pullpitoK && \
-   echo ' => Check the executable: ' && ./pullpitoK
+./gradlew nativeImage --info
+
+echo ' => Check the executable: '
+./pullpitoK
 echo "Executable has been built! ✅"
 
 echo "Executable has been generated in local directory.
