@@ -23,7 +23,7 @@ dependencies {
 }
 
 application {
-    mainClassName = "pullpitok.AppKt"
+    mainClass.set("pullpitok.AppKt")
 }
 
 fun isNonStable(version: String): Boolean {
