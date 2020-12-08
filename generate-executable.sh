@@ -4,7 +4,7 @@
 set -e
 
 echo "Building JAR file:"
-./gradlew shadowJar
+./gradlew uberJar
 echo "JAR file has been built! ✅"
 
 echo "Install GraalVM via SDKMAN!:"
