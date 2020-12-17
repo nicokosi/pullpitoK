@@ -12,6 +12,11 @@ For a public Github repository, run:
 
     ./gradlew run --args "python/peps"
 
+or (experimental):
+
+    export JAVA_OPTS="-Xms500m -Xmx500m -XX:+UseStringDeduplication -XX:+AlwaysPreTouch -XX:+UnlockExperimentalVMOptions -XX:+UseEpsilonGC"
+    ./gradlew run --args "python/peps
+
 For a private Github repository, add a authentication token:
 
     ./gradlew run --args "fakeOrg/fakePrivateRepo $GITHUB_TOKEN"
