@@ -20,6 +20,7 @@ native-image \
    --enable-https \
    --no-fallback \
    -jar ./build/libs/pullpitoK-all.jar \
+   -R:MinHeapSize=50m -R:MaxHeapSize=50m \
    pullpitoK && \
    echo ' => Check the executable: ' && ./pullpitoK
 echo "Executable has been built! ✅"
