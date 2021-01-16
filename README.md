@@ -1,4 +1,4 @@
-# PullpitoK [![Build Status](https://travis-ci.com/nicokosi/pullpitoK.svg?branch=master)](https://travis-ci.com/nicokosi/pullpitoK)
+# PullpitoK [![Build Status](https://travis-ci.com/nicokosi/pullpitoK.svg?branch=main)](https://travis-ci.com/nicokosi/pullpitoK)
 
 Like [nicokosi/pullpito](https://github.com/nicokosi/pullpito/), but implemented in [Kotlin](https://kotlinlang.org/) in order to discover this language. 🎓
 
@@ -38,7 +38,7 @@ An executable file named `pullpitoK` should be generated in the current director
 
 ### Inspect the code
 
-Code inspection is configured on the master branch. See the [sonarcloud.io's dashboard](https://sonarcloud.io/dashboard?id=nicokosi_pullpitoK).
+Code inspection is configured on the `main` branch. See the [sonarcloud.io's dashboard](https://sonarcloud.io/dashboard?id=nicokosi_pullpitoK).
 
 In order to inspect the code locally, run:
 
