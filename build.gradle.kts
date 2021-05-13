@@ -5,7 +5,7 @@ plugins {
     id("se.patrikerdes.use-latest-versions") version "0.2.16"
     id("com.github.ben-manes.versions") version "0.36.0"
     id("com.adarshr.test-logger") version "3.0.0"
-    id("com.diffplug.spotless") version "5.9.0"
+    id("com.diffplug.spotless") version "5.12.5"
     application
 }
 
