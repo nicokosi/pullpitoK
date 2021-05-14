@@ -55,7 +55,14 @@ spotless {
 }
 
 tasks.register<Jar>("uberJar") {
+    manifest {
+        attributes["Implementation-Title"] = "PullpitoK"
+        attributes["Implementation-Version"] = archiveVersion
+        attributes["Main-Class"] = "pullpitok.AppKt"
+    }
+
     archiveClassifier.set("all")
+    duplicatesStrategy = DuplicatesStrategy.INCLUDE
 
     from(sourceSets.main.get().output)
 
