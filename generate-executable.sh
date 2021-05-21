@@ -18,6 +18,7 @@ echo "Build executable from JAR via GraalVM:"
 gu install native-image && \
 native-image \
    --enable-https \
+   --gc=epsilon \
    --no-fallback \
    -jar ./build/libs/pullpitoK-all.jar \
    -R:MinHeapSize=50m -R:MaxHeapSize=50m \
