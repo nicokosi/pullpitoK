@@ -16,13 +16,15 @@ sdk use java $GRAALVM_VERSION
 
 echo "Build executable from JAR via GraalVM:"
 gu install native-image && \
+
+#   --gc=epsilon # with Graal 21.2 \
+
 native-image \
    --enable-https \
-   --gc=epsilon \
    --no-fallback \
    --no-server \
    -jar ./build/libs/pullpitoK-all.jar \
-   -R:MinHeapSize=50m -R:MaxHeapSize=50m \
+   -R:MinHeapSize=10m -R:MaxHeapSize=10m -R:MaxNewSize=10m \
    pullpitoK && \
    echo ' => Check the executable: ' && ./pullpitoK
 echo "Executable has been built! ✅"
