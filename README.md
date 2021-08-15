@@ -1,4 +1,4 @@
-# PullpitoK [![Build Status](https://travis-ci.com/nicokosi/pullpitoK.svg?branch=main)](https://travis-ci.com/nicokosi/pullpitoK)
+# PullpitoK [![Build Status](https://github.com/nicokosi/pullpitoK/actions/workflows/ci.yml/badge.svg)](https://github.com/nicokosi/pullpitoK/actions/workflows/ci.yml)
 
 Like [nicokosi/pullpito](https://github.com/nicokosi/pullpito/), but implemented in [Kotlin](https://kotlinlang.org/) in order to discover this language. 🎓
 
