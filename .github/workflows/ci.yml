@@ -16,7 +16,7 @@ jobs:
           distribution: 'adopt'
 
       - name: Validate Gradle wrapper
-        uses: gradle/wrapper-validation-action@a9ea6903464ddbaa9cac308e863ccc0a362742a6
+        uses: gradle/wrapper-validation-action@84d7e182ae7c7a37f200c184f64038fb0e62dd7d
 
       - name: Build with Gradle
         run: ./gradlew build
