@@ -10,7 +10,7 @@ echo "JAR file has been built! ✅"
 echo "Install GraalVM via SDKMAN!:"
 curl --silent "https://get.sdkman.io?rcupdate=false" | bash || echo 'SDKMAN! already installed'
 source "$HOME/.sdkman/bin/sdkman-init.sh"
-GRAALVM_VERSION="21.2.0.r16-grl"
+GRAALVM_VERSION="21.3.0.r17-grl"
 sdkman_auto_answer=true sdk install java $GRAALVM_VERSION > /dev/null || echo "GraalVM $GRAALVM_VERSION already installed."
 sdk use java $GRAALVM_VERSION
 
