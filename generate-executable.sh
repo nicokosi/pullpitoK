@@ -19,7 +19,6 @@ gu install native-image && \
 native-image \
    --enable-https \
    --no-fallback \
-   --no-server \
    -jar ./build/libs/pullpitoK-all.jar \
    pullpitoK && \
    echo ' => Check the executable: ' && ./pullpitoK
