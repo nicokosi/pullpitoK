@@ -216,4 +216,11 @@ gradle-app.setting
 **/build/
 
 # End of https://www.toptal.com/developers/gitignore/api/gradle,kotlin,eclipse,intellij+all,visualstudiocode
+
+# VSCode stuff 🤔
+.classpath
+.project
+.vscode/
+
+# My stuff 🙂
 pullpitoK.build_artifacts.txt
