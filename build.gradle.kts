@@ -15,7 +15,7 @@ repositories {
 }
 
 dependencies {
-    implementation("com.fasterxml.jackson.core:jackson-databind:2.13.1")
+    implementation("com.fasterxml.jackson.core:jackson-databind:2.13.2.2")
     implementation("org.jetbrains.kotlin:kotlin-stdlib")
     testImplementation("org.jetbrains.kotlin:kotlin-test")
     testImplementation("org.jetbrains.kotlin:kotlin-test-junit")
