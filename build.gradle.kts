@@ -4,7 +4,7 @@ plugins {
     id("org.jetbrains.kotlin.jvm") version "1.6.10"
     id("se.patrikerdes.use-latest-versions") version "0.2.18"
     id("com.github.ben-manes.versions") version "0.42.0"
-    id("com.adarshr.test-logger") version "3.1.0"
+    id("com.adarshr.test-logger") version "3.2.0"
     id("com.diffplug.spotless") version "6.4.1"
     application
 }
