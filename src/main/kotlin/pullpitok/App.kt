@@ -56,8 +56,9 @@ internal fun counters(
         val count = events.value
             .filter(predicate)
             .count()
-        if (count > 0)
+        if (count > 0) {
             counters += "\n\t\t$author: $count"
+        }
     }
     return counters
 }
