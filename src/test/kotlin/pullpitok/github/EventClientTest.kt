@@ -5,11 +5,13 @@ import kotlin.test.assertEquals
 
 class EventClientTest {
 
+    private val eventClient = EventClient("http", "anyHost")
+
     @Test
     fun `can return no events with a mocked GitHub API`() {
         assertEquals(
             emptyList(),
-            EventClient().events("[]")
+            eventClient.events("[]")
         )
     }
 
@@ -26,7 +28,7 @@ class EventClientTest {
                 Event(id = "3.2", type = "PullRequestReviewCommentEvent", actor = Actor("bob"), payload = Payload("created")),
                 Event(id = "5", type = "PullRequestEvent", actor = Actor("eve"), payload = Payload("closed"))
             ),
-            EventClient().events(loadJsonEventFile())
+            eventClient.events(loadJsonEventFile())
         )
     }
 
