@@ -7,12 +7,12 @@ import java.net.http.HttpRequest
 import java.net.http.HttpResponse.BodyHandlers
 import java.time.Duration
 
-class EventClient {
+class EventClient(private val protocol: String, private val hostname: String) {
 
     private val client = HttpClient.newBuilder().build()
 
     fun githubEvents(repo: String, token: String?, page: Int): List<Event> {
-        val url = "https://api.github.com/repos/$repo/events?page=$page"
+        val url = "$protocol://$hostname/repos/$repo/events?page=$page"
         val request = HttpRequest.newBuilder()
             .timeout(Duration.ofSeconds(30))
             .header("Content-Type", "application/json")

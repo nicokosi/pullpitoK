@@ -24,7 +24,7 @@ internal fun invalidArguments(args: Array<String>): Boolean =
 private fun displayEvents(repo: String, token: String?) {
     val allEvents = mutableListOf<Event>()
     for (pageNumber in 1..10) {
-        val events = EventClient().githubEvents(repo, token, page = pageNumber)
+        val events = EventClient("https", "api.github.com").githubEvents(repo, token, page = pageNumber)
         if (events.isNotEmpty()) allEvents.addAll(events)
         else break
     }
