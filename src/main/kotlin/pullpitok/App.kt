@@ -25,8 +25,11 @@ private fun displayEvents(repo: String, token: String?) {
     val allEvents = mutableListOf<Event>()
     for (pageNumber in 1..10) {
         val events = EventClient("https", "api.github.com").githubEvents(repo, token, page = pageNumber)
-        if (events.isNotEmpty()) allEvents.addAll(events)
-        else break
+        if (events.isNotEmpty()) {
+            allEvents.addAll(events)
+        } else {
+            break
+        }
     }
     val eventsPerAuthor = perAuthor(allEvents)
     val opened: (Event) -> Boolean = { it.type == Type.PullRequestEvent.name && it.payload.action == Action.opened.name }
