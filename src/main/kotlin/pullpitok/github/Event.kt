@@ -8,9 +8,9 @@ data class Event(val id: String, val type: String, val actor: Actor, val payload
 enum class Action {
     created,
     closed,
-    opened
+    opened,
 }
 enum class Type {
     PullRequestEvent,
-    PullRequestReviewCommentEvent
+    PullRequestReviewCommentEvent,
 }

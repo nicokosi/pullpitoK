@@ -40,7 +40,7 @@ private fun displayEvents(repo: String, token: String?) {
             opened per author ${counters(eventsPerAuthor, opened)}
             commented per author ${counters(eventsPerAuthor, commented)}
             closed per author ${counters(eventsPerAuthor, closed)}
-                """
+                """,
     )
 }
 
@@ -50,7 +50,7 @@ private fun perAuthor(events: List<Event>): Map<String, List<Event>> = events
 
 internal fun counters(
     eventsPerAuthor: Map<String, List<Event>>,
-    predicate: (Event) -> Boolean
+    predicate: (Event) -> Boolean,
 ): String {
     eventsPerAuthor.entries
     var counters = ""

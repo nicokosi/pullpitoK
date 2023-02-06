@@ -14,7 +14,7 @@ class AppTest {
     fun `no counters`() {
         assertEquals(
             "",
-            counters(emptyMap()) { true }
+            counters(emptyMap()) { true },
         )
     }
 
@@ -23,7 +23,7 @@ class AppTest {
         val event = Event(id = "1", type = "PullRequestEvent", actor = Actor("alice"), payload = Payload("opened"))
         assertEquals(
             "\n\t\tauthor: 1",
-            counters(mapOf("author" to listOf(event))) { true }
+            counters(mapOf("author" to listOf(event))) { true },
         )
     }
 

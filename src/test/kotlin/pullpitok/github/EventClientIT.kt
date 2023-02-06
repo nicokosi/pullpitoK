@@ -27,9 +27,9 @@ class EventClientIT {
                         .withBody(
                             EventClientTest::class.java
                                 .getResource("/pullpitoK_events.json")
-                                ?.readText()
-                        )
-                )
+                                ?.readText(),
+                        ),
+                ),
         )
         val events = EventClient("http", "localhost:${wiremock.port()}")
             .githubEvents(repo, "1234", page)
@@ -37,7 +37,7 @@ class EventClientIT {
             events
                 .filter { it.type == Type.PullRequestEvent.name }
                 .size,
-            5
+            5,
         )
     }
 }

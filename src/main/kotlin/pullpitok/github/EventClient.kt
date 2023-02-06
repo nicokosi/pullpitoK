@@ -34,7 +34,7 @@ class EventClient(private val protocol: String, private val hostname: String) {
                     it.get("id").asText(),
                     it.get("type").asText(),
                     Actor(it.get("actor").get("login").asText()),
-                    Payload(it?.get("payload")?.get("action")?.asText().orEmpty())
+                    Payload(it?.get("payload")?.get("action")?.asText().orEmpty()),
                 )
             }
     }

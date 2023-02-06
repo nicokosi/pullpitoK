@@ -11,7 +11,7 @@ class EventClientTest {
     fun `can return no events with a mocked GitHub API`() {
         assertEquals(
             emptyList(),
-            eventClient.events("[]")
+            eventClient.events("[]"),
         )
     }
 
@@ -26,9 +26,9 @@ class EventClientTest {
                 Event(id = "3", type = "PullRequestReviewCommentEvent", actor = Actor("carol"), payload = Payload("created")),
                 Event(id = "3.1", type = "PullRequestReviewCommentEvent", actor = Actor("carol"), payload = Payload("created")),
                 Event(id = "3.2", type = "PullRequestReviewCommentEvent", actor = Actor("bob"), payload = Payload("created")),
-                Event(id = "5", type = "PullRequestEvent", actor = Actor("eve"), payload = Payload("closed"))
+                Event(id = "5", type = "PullRequestEvent", actor = Actor("eve"), payload = Payload("closed")),
             ),
-            eventClient.events(loadJsonEventFile())
+            eventClient.events(loadJsonEventFile()),
         )
     }
 
