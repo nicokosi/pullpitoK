@@ -10,7 +10,6 @@ import org.junit.Test
 import kotlin.test.assertEquals
 
 class EventClientIT {
-
     @JvmField
     @Rule
     var wiremock = WireMockRule()
@@ -31,8 +30,9 @@ class EventClientIT {
                         ),
                 ),
         )
-        val events = EventClient("http", "localhost:${wiremock.port()}")
-            .githubEvents(repo, "1234", page)
+        val events =
+            EventClient("http", "localhost:${wiremock.port()}")
+                .githubEvents(repo, "1234", page)
         assertEquals(
             events
                 .filter { it.type == Type.PullRequestEvent.name }

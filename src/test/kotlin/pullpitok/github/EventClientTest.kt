@@ -4,7 +4,6 @@ import org.junit.Test
 import kotlin.test.assertEquals
 
 class EventClientTest {
-
     private val eventClient = EventClient("http", "anyHost")
 
     @Test

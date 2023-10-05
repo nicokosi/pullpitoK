@@ -9,7 +9,6 @@ import kotlin.test.assertFalse
 import kotlin.test.assertTrue
 
 class AppTest {
-
     @Test
     fun `no counters`() {
         assertEquals(

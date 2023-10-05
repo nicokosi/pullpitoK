@@ -18,10 +18,12 @@ fun main(args: Array<String>) {
         .forEach { displayEvents(it, token) }
 }
 
-internal fun invalidArguments(args: Array<String>): Boolean =
-    args.size !in (1..2) || args[0] in setOf("", "-h", "--help")
+internal fun invalidArguments(args: Array<String>): Boolean = args.size !in (1..2) || args[0] in setOf("", "-h", "--help")
 
-private fun displayEvents(repo: String, token: String?) {
+private fun displayEvents(
+    repo: String,
+    token: String?,
+) {
     val allEvents = mutableListOf<Event>()
     for (pageNumber in 1..10) {
         val events = EventClient("https", "api.github.com").githubEvents(repo, token, page = pageNumber)
@@ -44,9 +46,10 @@ private fun displayEvents(repo: String, token: String?) {
     )
 }
 
-private fun perAuthor(events: List<Event>): Map<String, List<Event>> = events
-    .filter { it.type in Type.values().map(Type::name) }
-    .groupBy { it.actor.login }
+private fun perAuthor(events: List<Event>): Map<String, List<Event>> =
+    events
+        .filter { it.type in Type.values().map(Type::name) }
+        .groupBy { it.actor.login }
 
 internal fun counters(
     eventsPerAuthor: Map<String, List<Event>>,
@@ -56,9 +59,10 @@ internal fun counters(
     var counters = ""
     for (events in eventsPerAuthor.entries) {
         val author = events.key
-        val count = events.value
-            .filter(predicate)
-            .count()
+        val count =
+            events.value
+                .filter(predicate)
+                .count()
         if (count > 0) {
             counters += "\n\t\t$author: $count"
         }
