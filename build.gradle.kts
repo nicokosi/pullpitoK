@@ -3,7 +3,7 @@ import com.github.benmanes.gradle.versions.updates.DependencyUpdatesTask
 plugins {
     id("org.jetbrains.kotlin.jvm") version "1.9.20"
     id("se.patrikerdes.use-latest-versions") version "0.2.18"
-    id("com.github.ben-manes.versions") version "0.48.0"
+    id("com.github.ben-manes.versions") version "0.49.0"
     id("com.adarshr.test-logger") version "4.0.0"
     id("com.diffplug.spotless") version "6.22.0"
     id("org.sonarqube") version "4.4.1.3373"
