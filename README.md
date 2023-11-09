@@ -43,7 +43,7 @@ Code inspection is configured on the `main` branch. See the [sonarcloud.io's das
 In order to inspect the code locally, run:
 
     docker run -d --name sonarqube -p 9000:9000 sonarqube
-    ./gradlew sonarqube --info
+    ./gradlew sonarqube --info -Dsonar.login=admin -Dsonar.password=admin
 
 ### Upgrade the dependencies
 
