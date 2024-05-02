@@ -7,6 +7,7 @@ plugins {
     id("com.adarshr.test-logger") version "4.0.0"
     id("com.diffplug.spotless") version "6.25.0"
     id("org.sonarqube") version "5.1.0.4882"
+    id("org.owasp.dependencycheck") version "9.1.0" apply false
     application
 }
 
@@ -18,6 +19,7 @@ repositories {
 dependencies {
     implementation("com.fasterxml.jackson.core:jackson-databind:2.17.2")
     implementation("org.jetbrains.kotlin:kotlin-stdlib")
+    implementation("org.owasp:dependency-check-gradle:9.1.0")
     testImplementation("org.jetbrains.kotlin:kotlin-test")
     testImplementation("org.jetbrains.kotlin:kotlin-test-junit")
     testImplementation("com.github.tomakehurst:wiremock-jre8:3.0.1")
@@ -78,4 +80,12 @@ tasks.register<Jar>("uberJar") {
     from({
         configurations.runtimeClasspath.get().filter { it.name.endsWith("jar") }.map { zipTree(it) }
     })
+}
+
+allprojects {
+    apply(plugin = "org.owasp.dependencycheck")
+}
+
+configure<org.owasp.dependencycheck.gradle.extension.DependencyCheckExtension> {
+    format = org.owasp.dependencycheck.reporting.ReportGenerator.Format.ALL.toString()
 }
