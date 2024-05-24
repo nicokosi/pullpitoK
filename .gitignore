@@ -224,3 +224,4 @@ gradle-app.setting
 
 # My stuff 🙂
 pullpitoK.build_artifacts.txt
+/dependency-check-report.html
