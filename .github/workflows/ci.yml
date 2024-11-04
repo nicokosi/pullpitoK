@@ -20,3 +20,6 @@ jobs:
 
       - name: Build with Gradle
         run: ./gradlew build
+
+      - name: Check for security vulnerabilities
+        run: ./gradlew dependencyCheckAnalyze --nvdApiKey ${{ secrets.NVD_API_KEY }}
