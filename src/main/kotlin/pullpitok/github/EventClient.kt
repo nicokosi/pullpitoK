@@ -7,7 +7,10 @@ import java.net.http.HttpRequest
 import java.net.http.HttpResponse.BodyHandlers
 import java.time.Duration
 
-class EventClient(private val protocol: String, private val hostname: String) {
+class EventClient(
+    private val protocol: String,
+    private val hostname: String,
+) {
     private val client = HttpClient.newBuilder().build()
 
     fun githubEvents(
@@ -17,7 +20,8 @@ class EventClient(private val protocol: String, private val hostname: String) {
     ): List<Event> {
         val url = "$protocol://$hostname/repos/$repo/events?page=$page"
         val request =
-            HttpRequest.newBuilder()
+            HttpRequest
+                .newBuilder()
                 .timeout(Duration.ofSeconds(30))
                 .header("Content-Type", "application/json")
                 .uri(URI.create(url))
@@ -31,17 +35,23 @@ class EventClient(private val protocol: String, private val hostname: String) {
         return events(response.body())
     }
 
-    fun events(json: String): List<Event> {
-        return ObjectMapper().readTree(json)
+    fun events(json: String): List<Event> =
+        ObjectMapper()
+            .readTree(json)
             .map {
                 Event(
                     it.get("id").asText(),
                     it.get("type").asText(),
                     Actor(it.get("actor").get("login").asText()),
-                    Payload(it?.get("payload")?.get("action")?.asText().orEmpty()),
+                    Payload(
+                        it
+                            ?.get("payload")
+                            ?.get("action")
+                            ?.asText()
+                            .orEmpty(),
+                    ),
                 )
             }
-    }
 
     private fun fail(message: String): Nothing = throw IllegalArgumentException(message)
 }
