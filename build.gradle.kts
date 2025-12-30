@@ -29,7 +29,7 @@ application {
 
 kotlin {
     jvmToolchain {
-        (this as JavaToolchainSpec).languageVersion.set(JavaLanguageVersion.of(21))
+        (this as JavaToolchainSpec).languageVersion.set(JavaLanguageVersion.of(25))
     }
 }
 
