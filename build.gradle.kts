@@ -5,7 +5,7 @@ plugins {
     id("se.patrikerdes.use-latest-versions") version "0.2.19"
     id("com.github.ben-manes.versions") version "0.67.0"
     id("com.adarshr.test-logger") version "4.0.0"
-    id("com.diffplug.spotless") version "8.9.0"
+    id("com.diffplug.spotless") version "8.11.0"
     id("org.sonarqube") version "7.5.0.8588"
     application
 }
