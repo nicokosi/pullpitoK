@@ -6,7 +6,7 @@ plugins {
     id("com.github.ben-manes.versions") version "0.67.0"
     id("com.adarshr.test-logger") version "4.0.0"
     id("com.diffplug.spotless") version "8.11.0"
-    id("org.sonarqube") version "7.5.0.8588"
+    id("org.sonarqube") version "7.6.0.18749"
     application
 }
 
